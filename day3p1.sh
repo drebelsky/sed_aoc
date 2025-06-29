@@ -2,12 +2,15 @@
 # normalize formatting
 s/\./ /g
 s/[^0-9 ]/X/g
+
+# Collect all lines into the hold buffer, duplicating the first and last so we
+# can easily iterate over 3 lines at a time
 1h
 H
 $! b
 H
 
-# iterate over groups over 3
+# iterate over groups of 3
 : loop
 g
 /\n[^\n]*\n/! b convert
